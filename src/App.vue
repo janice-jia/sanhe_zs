@@ -61,7 +61,8 @@ import Footer from './components/Footer.vue'
     height: 570px;
     .textbox{
       height: 180px;
-      background: url(../assets/zhuangshi.png);
+      background: url(./assets/zhuangshi.png) no-repeat;
+      background-size: auto 180px;
       display: flex;
       flex-direction: column;
       align-items:flex-start;
