@@ -167,6 +167,7 @@ import Footer from './components/Footer.vue'
           text-align: left;
           font-style: normal;
           text-transform: none;
+          cursor: pointer;
           &:hover{
             background: #3853FF;
             border-radius: 100px 100px 100px 100px;
