@@ -23,8 +23,11 @@ import SupportIcon from './icons/IconSupport.vue'
 </template>
 
 <style lang="less" scoped>
+.main{
+  width: 100%;
+}
 .wrapper{
-    width: 600px;
+    width: 100%%;
     height: 570px;
     .textbox{
       height: 180px;
@@ -55,7 +58,7 @@ import SupportIcon from './icons/IconSupport.vue'
       }
     }
     .searchbox{
-      width: 600px;
+      padding: 40px 60px;
       height: 570px;
       background: #FFFFFF;
       box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.08);

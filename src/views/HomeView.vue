@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import Search from '../components/Search.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <Search />
   </main>
 </template>
+<style lang="less" scoped>
+  main{
+    width: 40%;
+  }
+</style>

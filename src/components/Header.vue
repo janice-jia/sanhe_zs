@@ -14,7 +14,7 @@
 .header{
   background: linear-gradient( 90deg, #6890FA 0%, #576DFF 100%);
   .main{
-    width: 1600px;
+    width: 80%;
     margin: 0 auto;
     height: 80px;
     display: flex;

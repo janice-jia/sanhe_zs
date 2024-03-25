@@ -17,10 +17,48 @@ import Footer from './components/Footer.vue'
             <p>Winning file download</p>
           </div>
           <div class="downbox">
-            <nav>
+            <div class="search_box">
+              <input type="text" class="search_input" placeholder="输入想要搜索的关键字查询"/>
+              <button class="search_btn" type="buttom">搜索</button>
+            </div>
+            <div class="list">
+              <div class="item">
+                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
+                <div class="time">2023-11-27</div>
+              </div>
+              <div class="item">
+                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
+                <div class="time">2023-11-27</div>
+              </div>
+              <div class="item">
+                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
+                <div class="time">2023-11-27</div>
+              </div>
+              <div class="item">
+                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
+                <div class="time">2023-11-27</div>
+              </div>
+              <div class="item">
+                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学中教师教学中教师教学技能大赛结果的通知.pdf</div>
+                <div class="time">2023-11-27</div>
+              </div>
+              <div class="item">
+                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
+                <div class="time">2023-11-27</div>
+              </div>
+              <div class="item">
+                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
+                <div class="time">2023-11-27</div>
+              </div>
+              <div class="item">
+                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
+                <div class="time">2023-11-27</div>
+              </div>
+            </div>
+            <!-- <nav>
               <RouterLink to="/">Home</RouterLink>
               <RouterLink to="/search">About</RouterLink>
-            </nav>
+            </nav> -->
           </div>
         </div>
       </header>
@@ -41,23 +79,24 @@ import Footer from './components/Footer.vue'
   }
 }
 .main{
-  width: 1600px;
+  width: 80%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   position: absolute;
   top:0;
   left: 50%;
-  margin-left: -800px ;
+  margin-left: -40% ;
   // padding: 0 2rem;
   header {
+    width: 54%;
     clear: both;
     line-height: 1.5;
     max-height: 100vh;
   }
 
   .wrapper{
-    width: 880px;
+    width: 100%;
     height: 570px;
     .textbox{
       height: 180px;
@@ -89,11 +128,100 @@ import Footer from './components/Footer.vue'
       }
     }
     .downbox{
-      width: 880px;
+      padding: 40px;
       height: 570px;
       background: #FFFFFF;
       box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.08);
       border-radius: 20px 20px 20px 20px;
+      .search_box{
+        display: flex;
+        justify-content: space-between;
+        .search_input{
+          width: 80%;
+          height: 56px;
+          line-height: 56px;
+          background: #F6F6F6;
+          padding: 0 40px;
+          border: none;
+          border-radius: 100px 100px 100px 100px;
+          font-family: Source Han Sans, Source Han Sans;
+          font-weight: 400;
+          font-size: 18px;
+          color: #CCCCCC;
+          line-height: 26px;
+          text-align: left;
+          font-style: normal;
+          text-transform: none;
+        }
+        .search_btn{
+          padding: 0 40px;
+          height: 56px;
+          background: rgba(56,83,255,0.2);
+          border-radius: 100px 100px 100px 100px;
+          border: none;
+          font-family: Source Han Sans, Source Han Sans;
+          font-weight: 500;
+          font-size: 18px;
+          color: #3853FF;
+          line-height: 56px;
+          text-align: left;
+          font-style: normal;
+          text-transform: none;
+          &:hover{
+            background: #3853FF;
+            border-radius: 100px 100px 100px 100px;
+            color: #FFFFFF;
+          }
+        }
+      }
+      .list{
+        padding-top: 40px;
+        .item{
+          display: flex;
+          justify-content: space-between;
+          line-height: 40px;
+          .tit{
+            font-family: Source Han Sans, Source Han Sans;
+            font-weight: 400;
+            font-size: 16px;
+            color: #666666;
+            text-align: left;
+            font-style: normal;
+            text-transform: none;
+            position: relative;
+            padding-left: 20px;
+            width: 80%;
+            white-space: nowrap; /* 不换行 */
+            overflow: hidden;    /* 超过部分隐藏 */
+            text-overflow: ellipsis; /* 添加省略号表示被裁切的内容 */
+            &::before{
+              position: absolute;
+              left: 0;
+              top: 13px;
+              content: '';
+              width: 14px;
+              height: 14px;
+              background: url(./assets/triangle.png) no-repeat;
+            }
+          }
+          .time{
+            font-family: Source Han Sans, Source Han Sans;
+            font-weight: 400;
+            font-size: 16px;
+            color: #999999;
+            text-align: left;
+            font-style: normal;
+            text-transform: none;
+          }
+          &:hover{
+            .tit,
+            .time{
+              color: #3853FF;
+              cursor: pointer;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -102,29 +230,4 @@ import Footer from './components/Footer.vue'
   display: block;
   margin: 0 auto 2rem;
 }
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
 </style>
