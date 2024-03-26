@@ -3,15 +3,27 @@ import { RouterLink, RouterView } from 'vue-router'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import api from './api'
+import { ref } from 'vue'
+
+const list:any = ref([]);
 
 // 登录
 const GetPagerTable = ()=>{
-  api.GetPagerTable({}).then((res:any) => {
+  api.GetPagerTable({
+    page: 1,
+    limit: 10,
+    jsondata: {
+      article_title: ''
+    },
+  }).then((res:any) => {
     console.info(res)
-    debugger
-    if(res?.status){
+    if(res?.code == 200){
+      res.data?.forEach(item => {
+        item.createDate = item.create_date ? item.create_date.slice(0,10) : ''
+      });
+      list.value = res.data
     }else{
-      
+      list.value = []
     }
   })
 }
@@ -36,37 +48,9 @@ GetPagerTable()
               <button class="search_btn" type="buttom">搜索</button>
             </div>
             <div class="list">
-              <div class="item">
-                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
-                <div class="time">2023-11-27</div>
-              </div>
-              <div class="item">
-                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
-                <div class="time">2023-11-27</div>
-              </div>
-              <div class="item">
-                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
-                <div class="time">2023-11-27</div>
-              </div>
-              <div class="item">
-                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
-                <div class="time">2023-11-27</div>
-              </div>
-              <div class="item">
-                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学中教师教学中教师教学技能大赛结果的通知.pdf</div>
-                <div class="time">2023-11-27</div>
-              </div>
-              <div class="item">
-                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
-                <div class="time">2023-11-27</div>
-              </div>
-              <div class="item">
-                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
-                <div class="time">2023-11-27</div>
-              </div>
-              <div class="item">
-                <div class="tit">廊教研〔2023〕25号-关于公布廊坊市普通高中教师教学技能大赛结果的通知.pdf</div>
-                <div class="time">2023-11-27</div>
+              <div class="item" v-for="(item, index) in list" :key="index">
+                <div class="tit">{{item.article_title}}</div>
+                <div class="time">{{item.createDate}}</div>
               </div>
             </div>
             <!-- <nav>
