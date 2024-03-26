@@ -2,6 +2,20 @@
 import { RouterLink, RouterView } from 'vue-router'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import api from './api'
+
+// 登录
+const GetPagerTable = ()=>{
+  api.GetPagerTable({}).then((res:any) => {
+    console.info(res)
+    debugger
+    if(res?.status){
+    }else{
+      
+    }
+  })
+}
+GetPagerTable()
 </script>
 
 <template>
