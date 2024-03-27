@@ -43,16 +43,42 @@ GetPagerTable()
             <p>Winning file download</p>
           </div>
           <div class="downbox">
+            <!-- 搜索 -->
             <div class="search_box">
               <input type="text" class="search_input" placeholder="输入想要搜索的关键字查询"/>
               <button class="search_btn" type="buttom">搜索</button>
             </div>
-            <div class="list">
+
+            <!-- 列表 -->
+            <div class="list" v-if="list.length">
               <div class="item" v-for="(item, index) in list" :key="index">
                 <div class="tit">{{item.article_title}}</div>
                 <div class="time">{{item.createDate}}</div>
               </div>
             </div>
+            <div v-else style="margin-top: 100px;">
+              <van-empty
+                image="https://fastly.jsdelivr.net/npm/@vant/assets/custom-empty-image.png"
+                image-size="80"
+                description="暂无内容"
+              />
+            </div>
+
+            <!-- 分页 -->
+            <div class="page" v-if="list.length">
+              <span class="total">共XXX项</span>
+              <span class="page_page">上一页</span>
+              <span class="page_num">1</span>
+              <span class="page_num">2</span>
+              <span class="page_num">3</span>
+              <span class="page_num">...</span>
+              <span class="page_num">10</span>
+              <span class="page_page">下一页</span>
+              <span class="page_total">共XXX页</span>
+              到第<input type="text"/>页
+              <button type="button">确定</button>
+            </div>
+
             <!-- <nav>
               <RouterLink to="/">Home</RouterLink>
               <RouterLink to="/search">About</RouterLink>
@@ -218,6 +244,82 @@ GetPagerTable()
               color: #3853FF;
               cursor: pointer;
             }
+          }
+        }
+      }
+
+      .page{
+        text-align: center;
+        font-family: Source Han Sans, Source Han Sans;
+        font-weight: 400;
+        .page_page{
+          margin: 0 4px;
+        }
+        .total{
+          margin-right: 18px;
+        }
+        .total,
+        .page_total{
+          line-height: 30px;
+          font-size: 14px;
+          color: #333333;
+          line-height: 20px;
+          text-align: left;
+          font-style: normal;
+          text-transform: none;
+        }
+        .page_total{
+          margin: 0 18px;
+        }
+        .page_num,
+        .page_page{
+          margin: 0 4px;
+          padding: 0 10px;
+          line-height: 30px;
+          height: 30px;
+          display: inline-block;
+          border-radius: 8px 8px 8px 8px;
+          border: 1px solid #CCCCCC;
+          font-size: 14px;
+          color: #333333;
+          text-align: left;
+          font-style: normal;
+          text-transform: none;
+          &:hover{
+            background: #3853FF;
+            color: #FFFFFF;
+            border-color: #3853FF;
+          }
+        }
+        input{
+          margin: 0 8px;
+          width: 30px;
+          height: 30px;
+          border-radius: 8px 8px 8px 8px;
+          border: 1px solid #3853FF;
+          font-weight: 400;
+          font-size: 14px;
+          color: #333333;
+          line-height: 20px;
+          text-align: left;
+          font-style: normal;
+          text-transform: none;
+        }
+        button{
+          width: 56px;
+          height: 30px;
+          text-align: center;
+          background: #3853FF;
+          border-radius: 8px 8px 8px 8px;
+          font-weight: 400;
+          font-size: 14px;
+          color: #FFFFFF;
+          line-height: 20px;
+          font-style: normal;
+          text-transform: none;
+          border: none;
+          :hover{
+            cursor: pointer;
           }
         }
       }

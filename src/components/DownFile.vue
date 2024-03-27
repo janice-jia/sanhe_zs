@@ -16,7 +16,45 @@ import SupportIcon from './icons/IconSupport.vue'
       </div>
 
       <div class="searchbox">
-        searchbox
+        <!-- 获奖人姓名 -->
+        <div class="form_item">
+          <div class="label_box"><span class="red">*</span>获奖人姓名</div>
+          <div class="input_box error">
+            <input type="text" />
+          </div>
+          <div class="error-msg">请输入正确的姓名格式</div>
+        </div>
+
+        <!-- 学校名称 -->
+        <div class="form_item">
+          <div class="label_box">学校名称</div>
+          <div class="input_box">
+            <input type="text" />
+          </div>
+          <div class="error-msg">请输入正确的姓名格式</div>
+        </div>
+
+        <!-- 作品名称 -->
+        <div class="form_item">
+          <div class="label_box">作品名称</div>
+          <div class="input_box">
+            <input type="text" />
+          </div>
+          <div class="error-msg">请输入正确的姓名格式</div>
+        </div>
+
+        <!-- 获奖证书编号 -->
+        <div class="form_item">
+          <div class="label_box"><span class="red">*</span>学校名称</div>
+          <div class="input_box">
+            <input type="text" />
+          </div>
+          <div class="error-msg">请输入正确的姓名格式</div>
+        </div>
+
+        <div class="search_btn">
+          <button type="button">查询</button>
+        </div>
       </div>
     </div>
   </div>
@@ -63,6 +101,78 @@ import SupportIcon from './icons/IconSupport.vue'
       background: #FFFFFF;
       box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.08);
       border-radius: 20px 20px 20px 20px;
+      .form_item{
+        .label_box{
+          font-family: Source Han Sans, Source Han Sans;
+          font-weight: 500;
+          font-size: 18px;
+          color: #333333;
+          text-align: left;
+          font-style: normal;
+          text-transform: none;
+          .red{
+            color: #F10000;
+          }
+        }
+        .input_box{
+          input{
+            width: 100%;
+            height: 48px;
+            border-radius: 8px 8px 8px 8px;
+            border: 1px solid #666666;
+            padding: 0 20px;
+
+            font-family: Source Han Sans, Source Han Sans;
+            font-weight: 400;
+            font-size: 20px;
+            color: #333333;
+            line-height: 48px;
+            text-align: left;
+            font-style: normal;
+            text-transform: none;
+          }
+        }
+        
+        .error{
+          input{
+            border-color:#F10000;
+          }
+        }
+
+        .error-msg{
+          margin-top: 5px;
+          font-family: Source Han Sans, Source Han Sans;
+          font-weight: 400;
+          font-size: 12px;
+          color: #F10000;
+          line-height: 17px;
+          text-align: right;
+          font-style: normal;
+          text-transform: none;
+        }
+      }
+
+      .search_btn{
+        margin-top: 30px;
+        button{
+          width: 100%;
+          height: 60px;
+          background: #3853FF;
+          border-radius: 8px 8px 8px 8px;
+          border: none;
+          font-family: Source Han Sans, Source Han Sans;
+          font-weight: 500;
+          font-size: 24px;
+          color: #FFFFFF;
+          line-height: 60px;
+          text-align: center;
+          font-style: normal;
+          text-transform: none;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 </style>
