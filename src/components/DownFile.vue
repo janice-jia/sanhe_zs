@@ -1,10 +1,50 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import WelcomeItem from './WelcomeItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
 import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
+import api from '../api'
+import { showToast, showSuccessToast } from 'vant';
+import { useRoute, useRouter} from 'vue-router'
+
+const pData:any = ref([])
+const errorField:any = ref([])
+// 查询
+const search = ()=>{
+  let canSub = true
+  errorField.value = {}
+  if(!pData.value.realname){
+    errorField.value.realname = true
+    canSub = false
+  }
+  // if(!pData.value.schoolname){
+  //   errorField.value.schoolname = true
+  //   canSub = false
+  // }
+  // if(!pData.value.workname){
+  //   errorField.value.workname = true
+  //   canSub = false
+  // }
+  if(!pData.value.idcardno){
+    errorField.value.idcardno = true
+    canSub = false
+  }
+  
+  if(!canSub){
+    return
+  }
+  api.GetCertificate({...pData}).then((res:any) => {
+    if(res?.status){
+      showToast(res?.msg || '提交失败');
+    }else{
+      showSuccessToast('提交成功')
+      router.go(0)
+    }
+  });
+}
 </script>
 
 <template>
@@ -19,41 +59,41 @@ import SupportIcon from './icons/IconSupport.vue'
         <!-- 获奖人姓名 -->
         <div class="form_item">
           <div class="label_box"><span class="red">*</span>获奖人姓名</div>
-          <div class="input_box error">
-            <input type="text" />
+          <div class="input_box" :class="{'error':errorField.realname}">
+            <input type="text" v-model="pData.realname" />
           </div>
-          <div class="error-msg">请输入正确的姓名格式</div>
+          <div class="error-msg" ><span v-if="errorField.realname">请输入正确的姓名格式</span></div>
         </div>
 
         <!-- 学校名称 -->
         <div class="form_item">
           <div class="label_box">学校名称</div>
-          <div class="input_box">
-            <input type="text" />
+          <div class="input_box" :class="{'error':errorField.schoolname}">
+            <input type="text" v-model="pData.schoolname"/>
           </div>
-          <div class="error-msg">请输入正确的姓名格式</div>
+          <div class="error-msg"><span v-if="errorField.schoolname">请输入正确的学习名称</span></div>
         </div>
 
         <!-- 作品名称 -->
         <div class="form_item">
           <div class="label_box">作品名称</div>
-          <div class="input_box">
-            <input type="text" />
+          <div class="input_box" :class="{'error':errorField.workname}">
+            <input type="text" v-model="pData.workname"/>
           </div>
-          <div class="error-msg">请输入正确的姓名格式</div>
+          <div class="error-msg"> <span v-if="errorField.workname">请输入正确的作品名称</span></div>
         </div>
 
         <!-- 获奖证书编号 -->
         <div class="form_item">
-          <div class="label_box"><span class="red">*</span>学校名称</div>
-          <div class="input_box">
-            <input type="text" />
+          <div class="label_box"><span class="red">*</span>获奖证书编号</div>
+          <div class="input_box" :class="{'error':errorField.idcardno}">
+            <input type="text" v-model="pData.idcardno"/>
           </div>
-          <div class="error-msg">请输入正确的姓名格式</div>
+          <div class="error-msg"><span v-if="errorField.idcardno">请输入正确的证书编号</span></div>
         </div>
 
         <div class="search_btn">
-          <button type="button">查询</button>
+          <button type="button" @click="search">查询</button>
         </div>
       </div>
     </div>
@@ -149,6 +189,7 @@ import SupportIcon from './icons/IconSupport.vue'
           text-align: right;
           font-style: normal;
           text-transform: none;
+          min-height: 20px;
         }
       }
 

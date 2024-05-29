@@ -7,7 +7,7 @@ import { ref } from 'vue'
 
 const list:any = ref([]);
 
-// 登录
+// 查询
 const GetPagerTable = ()=>{
   api.GetPagerTable({
     page: 1,
@@ -46,7 +46,7 @@ GetPagerTable()
             <!-- 搜索 -->
             <div class="search_box">
               <input type="text" class="search_input" placeholder="输入想要搜索的关键字查询"/>
-              <button class="search_btn" type="buttom">搜索</button>
+              <button class="search_btn" type="buttom" @click="search">搜索</button>
             </div>
 
             <!-- 列表 -->
@@ -161,7 +161,7 @@ GetPagerTable()
         display: flex;
         justify-content: space-between;
         .search_input{
-          width: 80%;
+          width: 75%;
           height: 56px;
           line-height: 56px;
           background: #F6F6F6;
@@ -192,6 +192,7 @@ GetPagerTable()
           font-style: normal;
           text-transform: none;
           cursor: pointer;
+          letter-spacing: 0;
           &:hover{
             background: #3853FF;
             border-radius: 100px 100px 100px 100px;

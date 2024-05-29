@@ -1,7 +1,7 @@
 // api/user.ts
 import Axios from '../utils/axios'
 
-// 登录
+// 列表
 const GetPagerTable = (data: {[key: string]: any}) => {
   let paseUrl = '/Article/GetPagerTable?';
   (data.page) && (paseUrl += `page=${data.page}&`);
@@ -13,7 +13,18 @@ const GetPagerTable = (data: {[key: string]: any}) => {
   return Axios.get(paseUrl, data)
 }
 
+// 查询证书
+const GetCertificate = (data: {[key: string]: any}) => {
+  let paseUrl = '/Certificate/GetCertificate?';
+  (data.realname) && (paseUrl += `realname=${data.realname}&`);
+  (data.schoolname) && (paseUrl += `schoolname=${data.schoolname}&`);
+  (data.workname) && (paseUrl += `workname=${data.workname}&`);
+  (data.idcardno) && (paseUrl += `idcardno=${data.idcardno}&`);
+  return Axios.get(paseUrl, data)
+}
+
 
 export default {
   GetPagerTable,
+  GetCertificate,
 }
