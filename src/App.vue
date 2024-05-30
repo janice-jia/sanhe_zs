@@ -11,6 +11,7 @@ const total:any = ref(0);
 const pagesTotal:any = ref(0);
 const curPage:any = ref(0);
 const customPage:any = ref();
+const article_title:any = ref()
 
 // 查询
 const GetPagerTable = (page)=>{
@@ -19,7 +20,7 @@ const GetPagerTable = (page)=>{
     page: page || 1,
     limit: 10,
     jsondata: {
-      article_title: ''
+      article_title: article_title.value || ''
     },
   }).then((res:any) => {
     console.info(res)
@@ -35,16 +36,24 @@ const GetPagerTable = (page)=>{
     }else{
       list.value = []
       total.value = 0
+      pagesTotal.value = 0
     }
   })
 }
 GetPagerTable()
+
+const search= ()=>{
+  curPage.value = 1;
+  curPage.value = 1;
+  GetPagerTable(curPage.value)
+}
 
 // 上一页
 const prePage= ()=>{
   curPage.value -=1;
   GetPagerTable(curPage.value)
 }
+
 
 // 下一页
 const nextPage= ()=>{
@@ -81,7 +90,7 @@ const changePage= (page)=>{
           <div class="downbox">
             <!-- 搜索 -->
             <div class="search_box">
-              <input type="text" class="search_input" placeholder="输入想要搜索的关键字查询"/>
+              <input type="text" v-model="article_title" class="search_input" placeholder="输入想要搜索的关键字查询"/>
               <button class="search_btn" type="buttom" @click="search">搜索</button>
             </div>
 
@@ -106,7 +115,7 @@ const changePage= (page)=>{
               <span class="page_page" v-if="pagesTotal > 1 && curPage > 1" @click="prePage">上一页</span>
               <span class="page_num" :class="{'highClass': curPage==i}" @click="changePage(i)" v-for="i in pagesTotal">{{i}}</span>
               <span class="page_page" v-if="pagesTotal > 1 && curPage != pagesTotal" @click="nextPage">下一页</span>
-              <span class="page_total">共{{total}}页</span>
+              <span class="page_total">共{{pagesTotal}}页</span>
               到第<input type="number" v-model="customPage"/>页
               <button type="button" @click="changePage(customPage)">确定</button>
             </div>

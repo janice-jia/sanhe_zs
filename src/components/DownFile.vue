@@ -20,14 +20,14 @@ const search = ()=>{
     errorField.value.realname = true
     canSub = false
   }
-  // if(!pData.value.schoolname){
-  //   errorField.value.schoolname = true
-  //   canSub = false
-  // }
-  // if(!pData.value.workname){
-  //   errorField.value.workname = true
-  //   canSub = false
-  // }
+  if(!pData.value.schoolname){
+    errorField.value.schoolname = true
+    canSub = false
+  }
+  if(!pData.value.workname){
+    errorField.value.workname = true
+    canSub = false
+  }
   if(!pData.value.idcardno){
     errorField.value.idcardno = true
     canSub = false
@@ -36,12 +36,12 @@ const search = ()=>{
   if(!canSub){
     return
   }
-  api.GetCertificate({...pData}).then((res:any) => {
-    if(res?.status){
-      showToast(res?.msg || '提交失败');
+  api.GetCertificate({...pData.value}).then((res:any) => {
+    if(res.code!=200){
+      showToast(res?.msg || '查询失败');
     }else{
-      showSuccessToast('提交成功')
-      router.go(0)
+      showSuccessToast('成功')
+      // router.go(0)
     }
   });
 }
