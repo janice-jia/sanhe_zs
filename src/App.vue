@@ -4,13 +4,19 @@ import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import api from './api'
 import { ref } from 'vue'
+import { showToast, showSuccessToast } from 'vant';
 
 const list:any = ref([]);
+const total:any = ref(0);
+const pagesTotal:any = ref(0);
+const curPage:any = ref(0);
+const customPage:any = ref();
 
 // 查询
-const GetPagerTable = ()=>{
+const GetPagerTable = (page)=>{
+  curPage.value = page || 1
   api.GetPagerTable({
-    page: 1,
+    page: page || 1,
     limit: 10,
     jsondata: {
       article_title: ''
@@ -21,13 +27,43 @@ const GetPagerTable = ()=>{
       res.data?.forEach(item => {
         item.createDate = item.create_date ? item.create_date.slice(0,10) : ''
       });
-      list.value = res.data
+      list.value = res.data;
+      total.value = res.rowCount;
+      if(res.rowCount){
+        pagesTotal.value = Math.round(res.rowCount / 10) + 1
+      }
     }else{
       list.value = []
+      total.value = 0
     }
   })
 }
 GetPagerTable()
+
+// 上一页
+const prePage= ()=>{
+  curPage.value -=1;
+  GetPagerTable(curPage.value)
+}
+
+// 下一页
+const nextPage= ()=>{
+  curPage.value +=1;
+  GetPagerTable(curPage.value)
+}
+
+// 下一页
+const changePage= (page)=>{
+  if(page>pagesTotal.value){
+    showToast(`当前至多 ${pagesTotal.value} 页`);
+    return
+  }else if(!page || page<0){
+    showToast('页面至少是 1 哦');
+    return
+  }
+  curPage.value = page;
+  GetPagerTable(curPage.value)
+}
 </script>
 
 <template>
@@ -65,18 +101,14 @@ GetPagerTable()
             </div>
 
             <!-- 分页 -->
-            <div class="page" v-if="list.length">
-              <span class="total">共XXX项</span>
-              <span class="page_page">上一页</span>
-              <span class="page_num">1</span>
-              <span class="page_num">2</span>
-              <span class="page_num">3</span>
-              <span class="page_num">...</span>
-              <span class="page_num">10</span>
-              <span class="page_page">下一页</span>
-              <span class="page_total">共XXX页</span>
-              到第<input type="text"/>页
-              <button type="button">确定</button>
+            <div class="page" v-if="total">
+              <span class="total">共{{total}}项</span>
+              <span class="page_page" v-if="pagesTotal > 1 && curPage > 1" @click="prePage">上一页</span>
+              <span class="page_num" :class="{'highClass': curPage==i}" @click="changePage(i)" v-for="i in pagesTotal">{{i}}</span>
+              <span class="page_page" v-if="pagesTotal > 1 && curPage != pagesTotal" @click="nextPage">下一页</span>
+              <span class="page_total">共{{total}}页</span>
+              到第<input type="number" v-model="customPage"/>页
+              <button type="button" @click="changePage(customPage)">确定</button>
             </div>
 
             <!-- <nav>
@@ -202,6 +234,7 @@ GetPagerTable()
       }
       .list{
         padding-top: 40px;
+        min-height: 400px;
         .item{
           display: flex;
           justify-content: space-between;
@@ -255,6 +288,7 @@ GetPagerTable()
         font-weight: 400;
         .page_page{
           margin: 0 4px;
+          cursor: pointer;
         }
         .total{
           margin-right: 18px;
@@ -274,6 +308,7 @@ GetPagerTable()
         }
         .page_num,
         .page_page{
+          cursor: pointer;
           margin: 0 4px;
           padding: 0 10px;
           line-height: 30px;
@@ -286,11 +321,17 @@ GetPagerTable()
           text-align: left;
           font-style: normal;
           text-transform: none;
+          
           &:hover{
             background: #3853FF;
             color: #FFFFFF;
             border-color: #3853FF;
           }
+        }
+        .highClass{
+          background: #3853FF;
+          color: #FFFFFF;
+          border-color: #3853FF;
         }
         input{
           margin: 0 8px;
