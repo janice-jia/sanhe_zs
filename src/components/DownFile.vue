@@ -9,9 +9,20 @@ import SupportIcon from './icons/IconSupport.vue'
 import api from '../api'
 import { showToast, showSuccessToast } from 'vant';
 import { useRoute, useRouter} from 'vue-router'
+const router = useRouter()
+const route = useRoute()
 
-const pData:any = ref([])
+
+// const pData:any = ref({})
 const errorField:any = ref([])
+
+const pData:any = ref({
+  realname:'张三',
+  schoolname:'三河三中',
+  workname:'大好河山11',
+  idcardno: '1382929200222',
+})
+
 // 查询
 const search = ()=>{
   let canSub = true
@@ -40,8 +51,7 @@ const search = ()=>{
     if(res.code!=200){
       showToast(res?.msg || '查询失败');
     }else{
-      showSuccessToast('成功')
-      // router.go(0)
+      router.push({ path: '/certificate', query:{realname:res.data.realname}, meta: { target: '_blank' } });
     }
   });
 }

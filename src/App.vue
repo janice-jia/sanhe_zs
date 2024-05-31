@@ -5,6 +5,10 @@ import Footer from './components/Footer.vue'
 import api from './api'
 import { ref } from 'vue'
 import { showToast, showSuccessToast } from 'vant';
+let origin = window.location.origin
+if(origin.indexOf('localhost')>-1){
+  origin = 'http://150.129.138.39:13380'
+}
 
 const list:any = ref([]);
 const total:any = ref(0);
@@ -12,6 +16,20 @@ const pagesTotal:any = ref(0);
 const curPage:any = ref(0);
 const customPage:any = ref();
 const article_title:any = ref()
+const originUrl:any = ref(origin)
+import { useRoute, useRouter} from 'vue-router'
+const router = useRouter()
+const route = useRoute()
+console.info(route)
+const pageName:any = ref(route.name) 
+
+ // 在router实例上添加导航守卫
+router.beforeEach((to, from, next) => {
+  // 在这里可以添加你的路由变化监听逻辑
+  console.log('路由即将改变：', from.path, '->', to.path);
+  pageName.value = to.name
+  next();
+});
 
 // 查询
 const GetPagerTable = (page)=>{
@@ -73,12 +91,25 @@ const changePage= (page)=>{
   curPage.value = page;
   GetPagerTable(curPage.value)
 }
+
+const downloadFn = (item)=>{
+  const url = originUrl.value+item.article_url
+  const link = document.createElement('a')
+  link.href = url
+  console.log(link.href)
+  // link.setAttribute('download', item.article_title)
+  link.setAttribute('target', '_blank')
+  document.body.appendChild(link)
+  link.click()
+  window.URL.revokeObjectURL(link.href)
+  document.body.removeChild(link)
+}
 </script>
 
 <template>
   <Header/>
   <div></div>
-  <div class="main_box">
+  <div class="main_box" v-if="!pageName || pageName=='home'">
     <div class="main_bg"></div>
     <div class="main">
       <header>
@@ -97,7 +128,7 @@ const changePage= (page)=>{
             <!-- 列表 -->
             <div class="list" v-if="list.length">
               <div class="item" v-for="(item, index) in list" :key="index">
-                <div class="tit">{{item.article_title}}</div>
+                <div class="tit" @click="downloadFn(item)">{{item.article_title}}</div>
                 <div class="time">{{item.createDate}}</div>
               </div>
             </div>
@@ -131,6 +162,9 @@ const changePage= (page)=>{
       <RouterView />
     </div>
     <div style="height:180px"></div>
+  </div>
+  <div v-else>
+    <RouterView />
   </div>
   <Footer/>
 </template>
@@ -262,6 +296,9 @@ const changePage= (page)=>{
             white-space: nowrap; /* 不换行 */
             overflow: hidden;    /* 超过部分隐藏 */
             text-overflow: ellipsis; /* 添加省略号表示被裁切的内容 */
+            a{
+              color: #666666;
+            }
             &::before{
               position: absolute;
               left: 0;
