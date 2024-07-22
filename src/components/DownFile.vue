@@ -17,10 +17,10 @@ const route = useRoute()
 const errorField:any = ref([])
 
 const pData:any = ref({
-  // realname:'杨标',
+  realname:'杨标',
   // schoolname:'三河五中',
   // workname:'测试作品',
-  // idcardno: '532625199501141319',
+  certificateno: '532625199501141319',
 })
 
 // 查询
@@ -31,16 +31,16 @@ const search = ()=>{
     errorField.value.realname = true
     canSub = false
   }
-  if(!pData.value.schoolname){
-    errorField.value.schoolname = true
-    canSub = false
-  }
-  if(!pData.value.workname){
-    errorField.value.workname = true
-    canSub = false
-  }
-  if(!pData.value.idcardno){
-    errorField.value.idcardno = true
+  // if(!pData.value.schoolname){
+  //   errorField.value.schoolname = true
+  //   canSub = false
+  // }
+  // if(!pData.value.workname){
+  //   errorField.value.workname = true
+  //   canSub = false
+  // }
+  if(!pData.value.certificateno){
+    errorField.value.certificateno = true
     canSub = false
   }
   
@@ -104,10 +104,10 @@ const search = ()=>{
         <!-- 获奖证书编号 -->
         <div class="form_item">
           <div class="label_box"><span class="red">*</span>获奖证书编号</div>
-          <div class="input_box" :class="{'error':errorField.idcardno}">
-            <input type="text" v-model="pData.idcardno"/>
+          <div class="input_box" :class="{'error':errorField.certificateno}">
+            <input type="text" v-model="pData.certificateno"/>
           </div>
-          <div class="error-msg"><span v-if="errorField.idcardno">请输入正确的证书编号</span></div>
+          <div class="error-msg"><span v-if="errorField.certificateno">请输入正确的证书编号</span></div>
         </div>
 
         <div class="search_btn">
