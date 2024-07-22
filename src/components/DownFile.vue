@@ -58,8 +58,8 @@ const search = ()=>{
         query:{
           realname:res.data.realname, 
           certificateUrl: certificateUrl,
-        }, 
-        meta: { target: '_blank' } });
+        }
+      });
     }
   });
 }
