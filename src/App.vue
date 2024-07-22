@@ -5,10 +5,8 @@ import Footer from './components/Footer.vue'
 import api from './api'
 import { ref } from 'vue'
 import { showToast, showSuccessToast } from 'vant';
-let origin = window.location.origin
-if(origin.indexOf('localhost')>-1){
-  origin = 'http://150.129.138.39:13380'
-}
+let baseURL = import.meta.env.VITE_API_BASE_URL;
+baseURL = baseURL=='/api' ? 'http://150.129.138.39:14980' : baseURL;
 
 const list:any = ref([]);
 const total:any = ref(0);
@@ -16,7 +14,7 @@ const pagesTotal:any = ref(0);
 const curPage:any = ref(0);
 const customPage:any = ref();
 const article_title:any = ref()
-const originUrl:any = ref(origin)
+const originUrl:any = ref(baseURL)
 import { useRoute, useRouter} from 'vue-router'
 const router = useRouter()
 const route = useRoute()

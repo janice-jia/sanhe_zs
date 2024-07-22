@@ -4,9 +4,13 @@ import { useRoute, useRouter} from 'vue-router'
 const router = useRouter()
 const route = useRoute()
 const realname:any =  ref(route.query.realname)
+const certificateUrl:any = ref(route.query.certificateUrl)
 </script>
 <template>
   <div class="certificate">
+    <div class="download">
+      <a :href="certificateUrl" target="_blank"><img src="../assets/download.png" alt="" title="下载" width="35px"></a>
+    </div>
     <div class="con_bg">
       <div class="center_box">
         <p class="p1">中小学教师资格合格证</p>
@@ -22,6 +26,12 @@ const realname:any =  ref(route.query.realname)
 <style lang="less" scoped>
 .certificate{
   padding: 80px 0;
+  position: relative;
+  .download{
+    position: absolute;
+    right: 200px;
+    top:-60px;
+  }
   .con_bg{
     height: 840px;
     width: 1200px;

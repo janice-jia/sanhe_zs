@@ -4,7 +4,7 @@
 <template>
   <div class="header">
     <div class="main">
-      <div class="logo"></div>
+      <!-- <div class="logo"></div> -->
       <h1>三河市教育研究中心</h1>
     </div>
   </div>

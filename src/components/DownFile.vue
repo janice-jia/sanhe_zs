@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import WelcomeItem from './WelcomeItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
 import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
 import api from '../api'
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 import { showToast, showSuccessToast } from 'vant';
 import { useRoute, useRouter} from 'vue-router'
 const router = useRouter()
@@ -17,10 +17,10 @@ const route = useRoute()
 const errorField:any = ref([])
 
 const pData:any = ref({
-  realname:'张三',
-  schoolname:'三河三中',
-  workname:'大好河山11',
-  idcardno: '1382929200222',
+  // realname:'杨标',
+  // schoolname:'三河五中',
+  // workname:'测试作品',
+  // idcardno: '532625199501141319',
 })
 
 // 查询
@@ -51,7 +51,7 @@ const search = ()=>{
     if(res.code!=200){
       showToast(res?.msg || '查询失败');
     }else{
-      router.push({ path: '/certificate', query:{realname:res.data.realname}, meta: { target: '_blank' } });
+      router.push({ path: '/certificate', query:{realname:res.data.realname, certificateUrl:(baseURL=='/api' ? 'http://150.129.138.39:14980' : baseURL)+res.data.certificateUrl}, meta: { target: '_blank' } });
     }
   });
 }

@@ -4,7 +4,7 @@
 <template>
   <div class="footer">
     <div class="main">
-        <div class="logo"></div>
+        <!-- <div class="logo"></div> -->
         <div class="desc">
           <p>©廊坊市教育云Copyright@2014 "廊坊市教育云"由廊坊市教育局提供技术支持</p>
           <p>《中华人民共和国信息产业部ICP/IP备案》</p>
