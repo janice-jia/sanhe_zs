@@ -51,7 +51,15 @@ const search = ()=>{
     if(res.code!=200){
       showToast(res?.msg || '查询失败');
     }else{
-      router.push({ path: '/certificate', query:{realname:res.data.realname, certificateUrl:(baseURL=='/api' ? 'http://150.129.138.39:14980' : baseURL)+res.data.certificateUrl}, meta: { target: '_blank' } });
+      // 下载地址
+      const certificateUrl = (baseURL=='/api' ? 'http://150.129.138.39:14980' : baseURL)+res.data.certificateUrl
+      router.push({ 
+        path: '/certificate', 
+        query:{
+          realname:res.data.realname, 
+          certificateUrl: certificateUrl,
+        }, 
+        meta: { target: '_blank' } });
     }
   });
 }

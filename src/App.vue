@@ -30,7 +30,7 @@ router.beforeEach((to, from, next) => {
 });
 
 // 查询
-const GetPagerTable = (page)=>{
+const GetPagerTable = (page:any)=>{
   curPage.value = page || 1
   api.GetPagerTable({
     page: page || 1,
@@ -41,7 +41,7 @@ const GetPagerTable = (page)=>{
   }).then((res:any) => {
     console.info(res)
     if(res?.code == 200){
-      res.data?.forEach(item => {
+      res.data?.forEach((item:any) => {
         item.createDate = item.create_date ? item.create_date.slice(0,10) : ''
       });
       list.value = res.data;
@@ -56,7 +56,7 @@ const GetPagerTable = (page)=>{
     }
   })
 }
-GetPagerTable()
+GetPagerTable(1)
 
 const search= ()=>{
   curPage.value = 1;
@@ -78,7 +78,7 @@ const nextPage= ()=>{
 }
 
 // 下一页
-const changePage= (page)=>{
+const changePage= (page:any)=>{
   if(page>pagesTotal.value){
     showToast(`当前至多 ${pagesTotal.value} 页`);
     return
@@ -90,7 +90,7 @@ const changePage= (page)=>{
   GetPagerTable(curPage.value)
 }
 
-const downloadFn = (item)=>{
+const downloadFn = (item:any)=>{
   const url = originUrl.value+item.article_url
   const link = document.createElement('a')
   link.href = url
@@ -120,7 +120,7 @@ const downloadFn = (item)=>{
             <!-- 搜索 -->
             <div class="search_box">
               <input type="text" v-model="article_title" class="search_input" placeholder="输入想要搜索的关键字查询"/>
-              <button class="search_btn" type="buttom" @click="search">搜索</button>
+              <button class="search_btn" type="button" @click="search">搜索</button>
             </div>
 
             <!-- 列表 -->
