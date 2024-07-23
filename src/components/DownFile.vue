@@ -52,7 +52,7 @@ const search = ()=>{
       showToast(res?.msg || '查询失败');
     }else{
       // 下载地址
-      const certificateUrl = (baseURL=='/api' ? 'http://150.129.138.39:14980' : baseURL)+res.data.certificateUrl
+      const certificateUrl = (baseURL=='/api' ? 'http://localhost:9000' : baseURL)+res.data.certificateUrl
       router.push({ 
         path: '/certificate', 
         query:{
