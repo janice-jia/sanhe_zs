@@ -6,7 +6,7 @@ import api from './api'
 import { ref } from 'vue'
 import { showToast, showSuccessToast } from 'vant';
 let baseURL = import.meta.env.VITE_API_BASE_URL;
-baseURL = baseURL=='/api' ? 'http://localhost:9000' : baseURL;
+baseURL = baseURL=='/api' ? 'http://150.129.138.39:14980' : baseURL;
 
 const list:any = ref([]);
 const total:any = ref(0);

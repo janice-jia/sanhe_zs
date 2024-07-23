@@ -19,7 +19,7 @@ const GetCertificate = (data: {[key: string]: any}) => {
   (data.realname) && (paseUrl += `realname=${data.realname}&`);
   (data.schoolname) && (paseUrl += `schoolname=${data.schoolname}&`);
   (data.workname) && (paseUrl += `workname=${data.workname}&`);
-  (data.certificateno) && (paseUrl += `certificateno=${data.certificateno}&`);
+  (data.idcardno) && (paseUrl += `idcardno=${data.idcardno}&`);
   return Axios.get(paseUrl, data)
 }
 
