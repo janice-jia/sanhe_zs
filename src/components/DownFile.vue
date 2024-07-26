@@ -17,10 +17,10 @@ const route = useRoute()
 const errorField:any = ref([])
 
 const pData:any = ref({
-  realname:'杨标',
+  // realname:'杨标',
   // schoolname:'三河五中',
   // workname:'测试作品',
-  certificateno: '532625199501141319',
+  // certificateno: '532625199501141319',
 })
 
 // 查询
@@ -52,7 +52,7 @@ const search = ()=>{
       showToast(res?.msg || '查询失败');
     }else{
       // 下载地址
-      const certificateUrl = (baseURL=='/api' ? 'http://localhost:9000' : baseURL)+res.data.certificateUrl
+      const certificateUrl = (baseURL=='/api' ? 'http://10.10.10.80:9000' : baseURL)+res.data.certificateUrl
       router.push({ 
         path: '/certificate', 
         query:{
