@@ -5,7 +5,7 @@
   <div class="header">
     <div class="main">
       <!-- <div class="logo"></div> -->
-      <h1>三河市教育研究中心</h1>
+      <h1>证书管理平台</h1>
     </div>
   </div>
 </template>
