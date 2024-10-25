@@ -9,7 +9,7 @@ const certificateUrl:any = ref(route.query.certificateUrl)
 <template>
   <div class="certificate">
     <div class="download">
-      <a :href="certificateUrl" target="_blank"><img src="../assets/download.png" alt="" title="下载" width="35px"></a>
+      <a :href="certificateUrl" target="_blank">证书下载</a>
     </div>
     <div class="con_bg">
       <div class="center_box">
@@ -31,6 +31,10 @@ const certificateUrl:any = ref(route.query.certificateUrl)
     position: absolute;
     right: 200px;
     top:-60px;
+    a{
+      font-size: 20px;
+      color: #FFFFFF;
+    }
   }
   .con_bg{
     height: 840px;
