@@ -53,13 +53,14 @@ const search = ()=>{
     }else{
       // 下载地址
       const certificateUrl = (baseURL=='/api' ? 'http://10.10.10.80:9000' : baseURL)+res.data.certificateUrl
-      router.push({ 
-        path: '/certificate', 
-        query:{
-          realname:res.data.realname, 
-          certificateUrl: certificateUrl,
-        }
-      });
+      // router.push({ 
+      //   path: '/certificate', 
+      //   query:{
+      //     realname:res.data.realname, 
+      //     certificateUrl: certificateUrl,
+      //   }
+      // });
+      window.open(certificateUrl, '_blank')
     }
   });
 }
